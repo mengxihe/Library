@@ -17,6 +17,9 @@ class Book {
 }
 
 
+const addBookBtn = document.getElementById('add-book-btn')
+
+
 const getBookInput = () =>{
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -30,6 +33,8 @@ const addBook = (e) => {
     const newBook = getBookInput()
     myLibrary.push(newBook)
 }
+
+
 
 const submit = document.getElementById('submit');
 submit.onclick = addBook;

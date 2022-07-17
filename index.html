@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -16,9 +17,10 @@
             </div>
         </div>
 
-        <div class="btn-container">
-            <button class="add-book-btn">Add New Book</button>
-        </div>
+        <main class="main-container">
+            <button id="add-book-btn">Add New Book</button>
+            <div class="books-grid" id="booksGrid"></div>
+        </main>
 
         <div class="modal-overlay">
             <form id="form">
@@ -44,7 +46,7 @@
         
     </div>
     <div></div>
-    <script src="script.js"></script>
+    
 </body>
 </html>
 
