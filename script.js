@@ -1,29 +1,37 @@
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const pages = document.querySelector('#pages');
-const isRead = document.querySelector('#isRead');
-const form = document.querySelector('#form');
-form.addEventListener('submit', addBookToLibrary);
-
-const addBookBtn = document.querySelector('.add-book-btn');
-const modelOverlay = document.querySelector('.model-overlay')
-addBookBtn.addEventListener('click', function(){
-    modelOverlay.classList.add('overlay-active');
-});
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    //the constructor..
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(
+        title = 'Unknown',
+        author = 'Unknown',
+        pages = '0',
+        read = false
+    )
+    {
+        this.title = title
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
-function addBookToLibrary () {
-    // do stuff here
-    const newBook = new Book(title.value, author.value, pages.value, isRead.value);
+
+const getBookInput = () =>{
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').value;
+    return new Book(title, author, pages, read)
+}
+
+const addBook = (e) => {
+    e.preventDefault()
+    const newBook = getBookInput()
     myLibrary.push(newBook)
 }
 
+const submit = document.getElementById('submit');
+submit.onclick = addBook;
+
+console.log(myLibrary)
