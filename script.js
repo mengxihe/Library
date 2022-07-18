@@ -20,6 +20,8 @@ class Book {
 const addBookBtn = document.getElementById('add-book-btn');
 const submit = document.getElementById('submit');
 const booksGrid = document.getElementById('booksGrid');
+const form = document.getElementById('form');
+// const modalOverlay = document.getElementById('form');
 
 const getBookInput = () =>{
     const title = document.getElementById('title').value;
@@ -33,14 +35,14 @@ const addBook = (e) => {
     e.preventDefault();
     const newBook = getBookInput();
     myLibrary.push(newBook);
-    updateBooksGrid(myLibrary);
+    updateBooksGrid();
+    closeFormModal();
 }
 
 const updateBooksGrid = () => {
     resetBooksGrid();
     for (let book of myLibrary) {
         createBookCard(book)
-        console.log(book.read);
     }
 }
 
@@ -78,6 +80,15 @@ const createBookCard = (book) => {
 
 }
 
-submit.onclick = addBook
+const addFormModal = () => {
+    form.style.display = 'block';
+}
 
+
+const closeFormModal = () => {
+    form.style.display = 'none';
+}
+
+addBookBtn.onclick = addFormModal;
+submit.onclick = addBook;
 
