@@ -9,7 +9,7 @@ class Book {
         read = false
     )
     {
-        this.title = title
+        this.title = title;
         this.author = author;
         this.pages = pages;
         this.read = read;
@@ -25,7 +25,7 @@ const getBookInput = () =>{
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+    const read = document.getElementById('read').checked;
     return new Book(title, author, pages, read);
 }
 
@@ -40,6 +40,7 @@ const updateBooksGrid = () => {
     resetBooksGrid();
     for (let book of myLibrary) {
         createBookCard(book)
+        console.log(book.read);
     }
 }
 
@@ -58,12 +59,22 @@ const createBookCard = (book) => {
 
     title.textContent = `'${book.title}'`;
     author.textContent =`'${book.author}'`;
-    pages.textContent = `'${book.author}'`;
+    pages.textContent = `'${book.pages}'`;
+    removeBtn.textContent ='Remove';
+    
+    if (book.read) {
+        readBtn.textContent = 'Read';
+    } else {
+        readBtn.textContent = 'Not Read';
+    }
 
+    btnGroup.appendChild(readBtn);
+    btnGroup.appendChild(removeBtn);
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
-    booksGrid.appendChild(bookCard)
+    bookCard.appendChild(btnGroup);
+    booksGrid.appendChild(bookCard);
 
 }
 
