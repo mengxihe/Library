@@ -21,6 +21,7 @@ const addBookBtn = document.getElementById('add-book-btn');
 const submit = document.getElementById('submit');
 const booksGrid = document.getElementById('booksGrid');
 const form = document.getElementById('form');
+form.style.display = 'none';
 // const modalOverlay = document.getElementById('form');
 
 const getBookInput = () =>{
@@ -64,12 +65,15 @@ const createBookCard = (book) => {
     pages.textContent = `'${book.pages}'`;
     removeBtn.textContent ='Remove';
     
+    readBtn.onclick = toggleRead;
+    removeBtn.onclick = toggleRemove;
+
     if (book.read) {
         readBtn.textContent = 'Read';
     } else {
         readBtn.textContent = 'Not Read';
     }
-
+    
     btnGroup.appendChild(readBtn);
     btnGroup.appendChild(removeBtn);
     bookCard.appendChild(title);
@@ -81,14 +85,44 @@ const createBookCard = (book) => {
 }
 
 const addFormModal = () => {
+    form.reset();
     form.style.display = 'block';
 }
-
 
 const closeFormModal = () => {
     form.style.display = 'none';
 }
 
+const toggleRead = (e) => {
+    const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+        "'",
+        ''
+    )
+    currentBook = getBook(myLibrary, title);
+    currentBook.read = !currentBook.read
+    updateBooksGrid();
+}
+
+const toggleRemove = (e) => {
+    const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+        "'",
+        ''
+    )
+    removeBook(myLibrary, title)
+    updateBooksGrid();
+    //console.log(title);
+}
+
+const getBook = (library, title) => {
+    return library.find((book) => book.title === title);
+}
+
+const removeBook = (library, title) =>{
+    //console.log(library.filter((book) => book.title !== title))
+    myLibrary = library.filter((book) => book.title !== title);
+}
+
 addBookBtn.onclick = addFormModal;
 submit.onclick = addBook;
+
 
