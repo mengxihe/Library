@@ -22,7 +22,6 @@ const submit = document.getElementById('submit');
 const booksGrid = document.getElementById('booksGrid');
 const form = document.getElementById('form');
 form.style.display = 'none';
-// const modalOverlay = document.getElementById('form');
 
 const getBookInput = () =>{
     const title = document.getElementById('title').value;
@@ -60,9 +59,9 @@ const createBookCard = (book) => {
     const readBtn = document.createElement('button');
     const removeBtn = document.createElement('button');
 
-    title.textContent = `'${book.title}'`;
-    author.textContent =`'${book.author}'`;
-    pages.textContent = `'${book.pages}'`;
+    title.textContent = `"${book.title}"`;
+    author.textContent =book.author;
+    pages.textContent = `${book.pages} pages`;
     removeBtn.textContent ='Remove';
     
     readBtn.onclick = toggleRead;
@@ -95,7 +94,7 @@ const closeFormModal = () => {
 
 const toggleRead = (e) => {
     const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
-        "'",
+        '"',
         ''
     )
     currentBook = getBook(myLibrary, title);
@@ -105,7 +104,7 @@ const toggleRead = (e) => {
 
 const toggleRemove = (e) => {
     const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
-        "'",
+        '"',
         ''
     )
     removeBook(myLibrary, title)
@@ -113,16 +112,19 @@ const toggleRemove = (e) => {
     //console.log(title);
 }
 
+const addBookToLib = (library, title) => {
+    library.push(title);
+}
+
 const getBook = (library, title) => {
     return library.find((book) => book.title === title);
 }
 
 const removeBook = (library, title) =>{
-    //console.log(library.filter((book) => book.title !== title))
     myLibrary = library.filter((book) => book.title !== title);
 }
 
 addBookBtn.onclick = addFormModal;
-submit.onclick = addBook;
+form.onsubmit = addBook;
 
 
