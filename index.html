@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="wrapper">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body id="wrapper">
+<body>
     <div class="container">
         <div class="header">
-            <div class="logo">Header Logo</div>
+            <div class="logo">My Books</div>
             <div class="manu">
                 <button>Log on</button>
             </div>
         </div>
 
         <main class="main-container">
-            <button id="add-book-btn">Add New Book</button>
+            <div class="addBtn btn">
+                <button id="add-book-btn" >Add New Book</button>
+            </div>
             <div class="books-grid" id="booksGrid"></div>
         </main>
     
@@ -35,8 +37,8 @@
             </a>
         </footer>
     </div>
-    <div id="modal-overlay">
-        <form id="form">
+    <div id="modal-overlay" class="userInput">
+        <form id="form" >
             <button id="close-form" type="button">close</button>
             <p>
             <label for="title">Title</label>
