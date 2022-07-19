@@ -21,7 +21,11 @@ const addBookBtn = document.getElementById('add-book-btn');
 const submit = document.getElementById('submit');
 const booksGrid = document.getElementById('booksGrid');
 const form = document.getElementById('form');
+const closeFormBtn = document.getElementById('close-form');
+const body = document.getElementById('wrapper');
+
 form.style.display = 'none';
+
 
 const getBookInput = () =>{
     const title = document.getElementById('title').value;
@@ -83,13 +87,15 @@ const createBookCard = (book) => {
 
 }
 
-const addFormModal = () => {
+const addFormModal = (e) => {
     form.reset();
     form.style.display = 'block';
+    e.stopPropagation();
 }
 
 const closeFormModal = () => {
     form.style.display = 'none';
+    console.log('hi')
 }
 
 const toggleRead = (e) => {
@@ -109,7 +115,6 @@ const toggleRemove = (e) => {
     )
     removeBook(myLibrary, title)
     updateBooksGrid();
-    //console.log(title);
 }
 
 const addBookToLib = (library, title) => {
@@ -124,7 +129,16 @@ const removeBook = (library, title) =>{
     myLibrary = library.filter((book) => book.title !== title);
 }
 
+const ignore = (e) => {
+    let isIn = form.contains(e.target);
+    if (!isIn) {
+        closeFormModal();
+    }
+}
+
+
+closeFormBtn.onclick = closeFormModal;
+
+body.addEventListener('click', ignore);
 addBookBtn.onclick = addFormModal;
 form.onsubmit = addBook;
-
-
