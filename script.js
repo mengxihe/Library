@@ -70,13 +70,19 @@ const createBookCard = (book) => {
     
     readBtn.onclick = toggleRead;
     removeBtn.onclick = toggleRemove;
+    readBtn.classList.add('formBtn')
+    removeBtn.classList.add('formBtn')
+    removeBtn.classList.add('glow-on-hover')
 
     if (book.read) {
         readBtn.textContent = 'Read';
+        readBtn.classList.add('btn-light-green')
     } else {
         readBtn.textContent = 'Not Read';
+        readBtn.classList.add('btn-light-red')
     }
-    
+    bookCard.classList.add('card')
+    btnGroup.classList.add('cardBtnGroup')
     btnGroup.appendChild(readBtn);
     btnGroup.appendChild(removeBtn);
     bookCard.appendChild(title);
