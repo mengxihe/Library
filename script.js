@@ -143,7 +143,7 @@ const ignore = (e) => {
     }
 }
 
-console.log('test');
+console.log('test 2');
 closeFormBtn.onclick = closeFormModal;
 
 body.addEventListener('click', ignore);
