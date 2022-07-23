@@ -23,6 +23,7 @@ const booksGrid = document.getElementById('booksGrid');
 const form = document.getElementById('form');
 const closeFormBtn = document.getElementById('close-form');
 const body = document.getElementById('wrapper');
+const container = document.getElementById('container')
 const modal = document.getElementById('modal-overlay')
 // form.style.display = 'none';
 
@@ -96,11 +97,13 @@ const createBookCard = (book) => {
 const addFormModal = (e) => {
     form.reset();
     modal.style.display = 'block';
+    container.style.opacity = '0.5';
     e.stopPropagation();
 }
 
 const closeFormModal = () => {
     modal.style.display = 'none';
+    container.style.opacity = '1';
     console.log('hi')
 }
 
